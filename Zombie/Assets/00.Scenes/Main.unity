@@ -178,6 +178,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 199227838317612392, guid: 49b04053ea2dc49ae8eae12418134ef1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199728747383001282, guid: 49b04053ea2dc49ae8eae12418134ef1, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49b04053ea2dc49ae8eae12418134ef1, type: 3}
 --- !u!1001 &967368322
@@ -393,7 +401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1186ce0c85f599b4b97966df283cc82b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.846
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1186ce0c85f599b4b97966df283cc82b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -401,7 +409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1186ce0c85f599b4b97966df283cc82b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.68
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1186ce0c85f599b4b97966df283cc82b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -435,6 +443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Peasant Girl@Talking On Phone
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 1186ce0c85f599b4b97966df283cc82b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c81fbfe6a3057d249a022826c8ec860d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1186ce0c85f599b4b97966df283cc82b, type: 3}
 --- !u!1 &1709511167

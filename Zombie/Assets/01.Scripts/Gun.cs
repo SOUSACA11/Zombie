@@ -37,8 +37,8 @@ public class Gun : MonoBehaviour //총 자체의 기능 구현
         bulletLineRenderer.enabled = false; //라인 렌더러를 비활성화
 
         //fireTransform = transform.Find("FireTransform"); //자식 객체 중에서 "FireTransform"이라는 이름을 가진 Transform 컴포넌트 찾기
-        //fireTransform = GetComponentInChildren<Transform>()[9]; //배열 로서 가져오니깐 9번째 /다차원
-        fireTransform = transform.GetChild(3); //1차원
+        //fireTransform = GetComponentsInChildren<Transform>()[9]; //배열 로서 가져오니깐 10번째 /다차원
+        fireTransform = transform.GetChild(4); //1차원
     }
 
     private void OnEnable() //총 상태 초기화 /컴포넌트 활성화시 발동
@@ -65,16 +65,21 @@ public class Gun : MonoBehaviour //총 자체의 기능 구현
     private void Shot() //실제 발사 처리 /발사 가능한 상태일경우 발사
     {
         RaycastHit hit; //레이캐스트에 의한 충돌 정보를 저장하는 컨테이너
-        Vector3 hitPosition = Vector3.zero; //탄알이 맞은 곳을 저장할 변수
 
+        //-Ray ray = new Ray(fireTransform.position, fireTransform.forward);
+        //-레이캐스트에서 사용할 레이의 정보를 저장하는 변수
+
+        Vector3 hitPosition = Vector3.zero; //탄알이 맞은 곳을 저장할 변수   
+        
+         //-if (Physics.Raycast(ray, out hit, fireDistance))
         if (Physics.Raycast(fireTransform.position, fireTransform.forward, out hit, fireDistance))
-         //레이캐스트(시작 지점, 방향, 충돌 정보 컨테이너, 사정거리)
+         //레이캐스트(시작 지점, 방향, 충돌 정보 컨테이너, 사정거리        
         {
-           
             //레이가 어떤 물체와 충돌한 경우
 
             IDamageble target = hit.collider.GetComponent<IDamageble>();
             //충돌한 상대방으로부터 IDamageble 오브젝트 가져오기 시도
+            //지역변수 target
 
             if (target  != null) //상대방으로부터 IDamageble 오브젝트를 가져오는 데 성공했다면
             {
@@ -92,12 +97,14 @@ public class Gun : MonoBehaviour //총 자체의 기능 구현
         }
 
         StartCoroutine(ShotEffect(hitPosition)); //발사 이펙트 재생 시작
+                                                 //코루틴 /매개변수 hitPosition 넘겨주기
 
         magAmmo--; //남은 탄알 수를 -1
         if(magAmmo <= 0)
         {
-            state = State.Empty; //탄창에 남은 탄알이 없다면 총의 현재 상태를 Empty로 갱신
+            state = State.Empty; //탄창에 남은 탄알이 없다면 총의 현재 상태를 Empty(대기상태)로 갱신
         }
+        //if (--magAmmo <= 0) state = State.Empty;
     }
 
     private IEnumerator ShotEffect(Vector3 hitPosition) //발사 이펙트와 소리를 재생하고 탄알 궤적을 그림
@@ -119,15 +126,35 @@ public class Gun : MonoBehaviour //총 자체의 기능 구현
 
     public bool Reload() //재장전 시도 / 재장전 가능한 상태인지 점검
     {
-        return false;
+       if (state == State.Reloading || ammoRemain <= 0 || magAmmo >= gunData.magCapacity)
+            //이미 재장전 중이거나 /남은 탄알이 없거나 /탄창에 탄알이 이미 가득한 경우 재장전 할 수 없음
+        {
+            return false; //점프문(return: 메서드 벗어남 / breack : 스코프 벗어남)
+        }
+
+        StartCoroutine(ReloadRoutine()); //재장전 처리 시작
+        return true;
     }
 
     private IEnumerator ReloadRoutine() //실제 재장전 처리를 진행
     {
         state = State.Reloading; //현재 상태를 재장전 중 상태로 전환
 
+        gunAudioplayer.PlayOneShot(gunData.reloadClip); //재장전 소리 재생
+
         yield return new WaitForSeconds(gunData.reloadTime); //재장전 소요 시간만큼 처리 쉬기
 
+        int ammoToFill = gunData.magCapacity - magAmmo; //탄창에 채울 탄알 계산
+
+        if (ammoRemain < ammoToFill) 
+            //탄창에 채워야 할 탄알이 남은 탄알보다 많다면 채워야 할 탄알 수를 남은 탄알 수에 맞춰 줄임
+        {
+            ammoToFill = ammoRemain;
+        }
+
+        magAmmo += ammoToFill; //탄창을 채움
+        ammoRemain -= ammoToFill; //남은 탄알에서 탄창에 채운만큼 탄알을 뺌
+        
         state = State.Ready; //총의 현재 상태를 발사 준비된 상태로 변경 
 
     }

@@ -144,7 +144,9 @@ public class Gun : MonoBehaviour //총 자체의 기능 구현
 
         yield return new WaitForSeconds(gunData.reloadTime); //재장전 소요 시간만큼 처리 쉬기
 
-        int ammoToFill = gunData.magCapacity - magAmmo; //탄창에 채울 탄알 계산
+       
+        int ammoToFill = gunData.magCapacity - magAmmo; //탄창에 채울 탄알 계산 /ammoToFill 지역변수
+                       //탄창 최대 용량 - 현재 탄창에 남아있는 탄알
 
         if (ammoRemain < ammoToFill) 
             //탄창에 채워야 할 탄알이 남은 탄알보다 많다면 채워야 할 탄알 수를 남은 탄알 수에 맞춰 줄임

@@ -38,7 +38,7 @@ public class Gun : MonoBehaviour //총 자체의 기능 구현
 
         //fireTransform = transform.Find("FireTransform"); //자식 객체 중에서 "FireTransform"이라는 이름을 가진 Transform 컴포넌트 찾기
         //fireTransform = GetComponentsInChildren<Transform>()[9]; //배열 로서 가져오니깐 10번째 /다차원
-        fireTransform = transform.GetChild(4); //1차원
+        fireTransform = transform.GetChild(3); //1차원
     }
 
     private void OnEnable() //총 상태 초기화 /컴포넌트 활성화시 발동
@@ -81,18 +81,19 @@ public class Gun : MonoBehaviour //총 자체의 기능 구현
             //충돌한 상대방으로부터 IDamageble 오브젝트 가져오기 시도
             //지역변수 target
 
-            if (target  != null) //상대방으로부터 IDamageble 오브젝트를 가져오는 데 성공했다면
+            if (target != null) //상대방으로부터 IDamageble 오브젝트를 가져오는 데 성공했다면
             {
                 target.OnDamage(gunData.damage, hit.point, hit.normal);
                 //상대방의 OnDamage 함수를 실행시켜 상대방에 대미지 주기
             }
 
             hitPosition = hit.point; //레이가 충돌한 위치 저장
+            //Debug.Log("IF : "+  hitPosition);
         }
-
         else //레이가 다른 물체와 충돌하지 않았다면
         {
             hitPosition = fireTransform.position + fireTransform.forward * fireDistance;
+            //Debug.Log("Else : " + hitPosition);
             //탄알이 최대 사정거리까지 날아갔을 때의 위치를 충돌 위치로 사용
         }
 

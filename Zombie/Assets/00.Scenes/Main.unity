@@ -195,6 +195,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1573074721}
     m_Modifications:
+    - target: {fileID: 627040528, guid: 13259943c4d634186ac994d570bb3253, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 627040529, guid: 13259943c4d634186ac994d570bb3253, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1784282725167592, guid: 13259943c4d634186ac994d570bb3253, type: 3}
       propertyPath: m_Name
       value: Gun
@@ -250,6 +258,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4126983702692336, guid: 13259943c4d634186ac994d570bb3253, type: 3}
   m_PrefabInstance: {fileID: 627040525}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &627040527 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 627040530, guid: 13259943c4d634186ac994d570bb3253, type: 3}
+  m_PrefabInstance: {fileID: 627040525}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31fff3745e4222d4d94f2bc7b669aaae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &967368322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -335,7 +354,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 20
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
@@ -497,10 +516,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbae4fc252b8fcb4dbe7e746f3ab4238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 0}
-  gunPivot: {fileID: 0}
-  leftHandMount: {fileID: 0}
-  rightHandMount: {fileID: 0}
+  gun: {fileID: 627040527}
+  gunPivot: {fileID: 1573074721}
+  leftHandMount: {fileID: 1013239761}
+  rightHandMount: {fileID: 2020000713}
+--- !u!4 &1013239761 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4355249862128598, guid: 13259943c4d634186ac994d570bb3253, type: 3}
+  m_PrefabInstance: {fileID: 627040525}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1202041500
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -555,6 +579,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1186ce0c85f599b4b97966df283cc82b, type: 3}
       propertyPath: m_Name
       value: Peasant Girl@Talking On Phone
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1186ce0c85f599b4b97966df283cc82b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 1186ce0c85f599b4b97966df283cc82b, type: 3}
       propertyPath: m_Controller
@@ -751,7 +779,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1662780055}
-  m_LocalRotation: {x: 0.41852477, y: 0.34116477, z: -0.17335865, w: 0.8236446}
+  m_LocalRotation: {x: 0.41852474, y: 0.34116474, z: -0.17335862, w: 0.82364464}
   m_LocalPosition: {x: -8, y: 16, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -837,7 +865,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709511167}
-  m_LocalRotation: {x: 0.41852477, y: 0.34116477, z: -0.17335865, w: 0.8236446}
+  m_LocalRotation: {x: 0.41852474, y: 0.34116474, z: -0.17335862, w: 0.82364464}
   m_LocalPosition: {x: -8, y: 16, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -879,3 +907,8 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!4 &2020000713 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4789895822770736, guid: 13259943c4d634186ac994d570bb3253, type: 3}
+  m_PrefabInstance: {fileID: 627040525}
+  m_PrefabAsset: {fileID: 0}

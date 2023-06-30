@@ -45,7 +45,7 @@ public class PlayerShooter : MonoBehaviour
         if (gun != null && UIManager.instance != null)
         {
             UIManager.instance.UpdateAmmoText(gun.magAmmo, gun.ammoRemain);
-            //UI 매니저의 탄알 텍스트에 탄창의 탄알과 남으 전체 탄알 표시
+            //UI 매니저의 탄알 텍스트에 탄창의 탄알과 남은 전체 탄알 표시
         }
     }
 
@@ -53,8 +53,10 @@ public class PlayerShooter : MonoBehaviour
     {
         gunPivot.position = playerAnimator.GetIKHintPosition(AvatarIKHint.RightElbow);
         //총의 기준점 gunPivot을 3D 모델의 오른쪽 팔꿈치 위치로 이동
+        //gunPivot는 애니메이터에서 수치를 얻어서 오브젝트에 적용
 
         
+        //애니메이터 수치 변경
         //IK를 사용하여 왼손의 위치와 회전을 총의 왼쪽 손잡이에 맞춤
         playerAnimator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1.0f);
         playerAnimator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1.0f);

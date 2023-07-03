@@ -53,7 +53,8 @@ public class PlayerShooter : MonoBehaviour
     {
         gunPivot.position = playerAnimator.GetIKHintPosition(AvatarIKHint.RightElbow);
         //총의 기준점 gunPivot을 3D 모델의 오른쪽 팔꿈치 위치로 이동
-        //gunPivot는 애니메이터에서 수치를 얻어서 오브젝트에 적용
+        //gunPivot는 애니메이터에서 수치를 가져와서 오브젝트에 적용
+        //오브젝트 수치 변경
 
         
         //애니메이터 수치 변경

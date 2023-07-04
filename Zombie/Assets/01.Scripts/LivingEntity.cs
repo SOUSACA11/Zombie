@@ -9,7 +9,7 @@ public class LivingEntity : MonoBehaviour, IDamageble
     public float health { get; protected set; } //현재 체력
     public bool dead { get; protected set; } //사망 상태
     
-    public event Action onDeath; //사망 시 발동할 이벤트
+    public event Action onDeath; //사망 시 발동할 이벤트 
 
 
     protected virtual void OnEnable() //생명체가 활성화될 떄 상태를 리셋

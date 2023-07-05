@@ -360,6 +360,7 @@
 "Assets/01.Scripts/IDamageble.cs"
 "Assets/01.Scripts/IItem.cs"
 "Assets/01.Scripts/LivingEntity.cs"
+"Assets/01.Scripts/PlayerHealth.cs"
 "Assets/01.Scripts/PlayerInput.cs"
 "Assets/01.Scripts/PlayerMovement.cs"
 "Assets/01.Scripts/PlayerShooter.cs"

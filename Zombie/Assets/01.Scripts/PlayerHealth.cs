@@ -61,6 +61,8 @@ public class PlayerHealth : LivingEntity
         {
             playerAudioPlayer.PlayOneShot(hitClip);
         }
+
+        //if (dead) return;
         
         base.OnDamage(damage, hitPoint, hitDirection);
 
@@ -75,6 +77,8 @@ public class PlayerHealth : LivingEntity
         base.Die();
 
         healthSlider.gameObject.SetActive(false); //체력 슬라이더 비활성화
+                                                  //(SetActive = 오브젝트 활성비활성화)
+                                                  //(enabled = 컴포넌트 활성비활성화)
 
         playerAudioPlayer.PlayOneShot(deathClip); //사망음 재생
         playerAnimator.SetTrigger("Die"); //애니메이터의 Die 트리거를 발동시켜 사망 애니메이션 재생
@@ -89,7 +93,16 @@ public class PlayerHealth : LivingEntity
     {
         if(!dead)
         {
+            IItem item = other.GetComponent<IItem>();
+            //충돌한 상대방으로부터 IItem 컴포넌트 가져오기 시도
 
+            if (item != null)
+            //충돌한 상대방으로부터 IItem 컴포넌트를 가져오는 데 성공했다면
+            {
+                item.Use(gameObject); //Use 메서드를 실행하여 아이템 사용
+                playerAudioPlayer.PlayOneShot(itemPickupClip); //아이템 습득 소리 재생*
+            }
         }
     }
 }
+//다형성 : 부모를 상속받은 자식이 부모타입으로도 취급 가능

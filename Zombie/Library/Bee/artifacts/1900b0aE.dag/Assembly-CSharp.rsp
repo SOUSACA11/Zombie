@@ -365,6 +365,7 @@
 "Assets/01.Scripts/PlayerMovement.cs"
 "Assets/01.Scripts/PlayerShooter.cs"
 "Assets/01.Scripts/UIManager.cs"
+"Assets/01.Scripts/Zombie.cs"
 -langversion:9.0
 
 /deterministic

@@ -49,23 +49,23 @@ public class Zombie: LivingEntity //좀비 AI 구현
     public void Setup(ZombieData zombieData) //좀비 AI의 초기 스펙을 결정하는 셋업 메서드
     {
         //체력 설정
-        startingHealth = zombieData.health;
-        health = zombieData.damage;
+        this.startingHealth = zombieData.health;
+        this.health = zombieData.health;
 
         //공격력 설정
-        damage = zombieData.damage;
+        this.damage = zombieData.damage;
 
         //내비메시 에이전트의 이동 속도 설정
-       /// pathMeshAgent.speed = zombieData.speed;
+        this.navMeshAgent.speed = zombieData.speed;
 
         //렌더러가 사용 중인 머터리얼의 컬러를 변경, 외형 색이 변함
-        zombieRenderer.material.color = zombieData.skinColor;
+        this.zombieRenderer.material.color = zombieData.skinColor;
 
     }
 
     private void Start() //게임 오브젝트 활성화와 동시에 AI의 추적 루틴 시작
     {
-        StartCoroutine(UpdatePath());
+        StartCoroutine(UpdatePath()); //코루틴 메서드 발동
     }
 
     private void Update() //추적 대상의 존재 여부에 따라 다른 애니메이션 재생
@@ -77,6 +77,7 @@ public class Zombie: LivingEntity //좀비 AI 구현
                                      //IEnumerator(열거자) 코루틴 발동 메서드, 시간 지연
     {
         while (!dead) //살아 있는 동안 무한 루프
+                      ///죽기 전까지
         {
           
             if (hasTarget)
@@ -90,9 +91,13 @@ public class Zombie: LivingEntity //좀비 AI 구현
                 //추적 대상 없음 : AI 이동 중지
                 navMeshAgent.isStopped = true;
 
-                //20유닛의 반지름을 가진 가상의 구를 그렸을 때 구와 겹치는 모든 콜라이더를 가져옴
+                //20유닛의 반지름을 가진 가상의 구를 그렸을 때 / 구와 겹치는 모든 콜라이더를 가져옴
                 //단 whatIsTarget 레이어를 가진 콜라이더만 가져오도록 필터링
                 Collider[] colliders = Physics.OverlapSphere(transform.position, 20f, whatIsTarget);
+                                      //물리안의 런타임중(실시간) 가상의 구 생성
+                                      //레이어마스크는 int 타입으로 반환 (인덱스 번호)
+                                      //멀티 네트워크를 위해 배열로 가져와여
+
 
                 //모든 콜라이더를 순회하면서 살아 있는 LivingEntity 찾기
                 for (int i =0; i<colliders.Length; i++)
@@ -179,4 +184,4 @@ public class Zombie: LivingEntity //좀비 AI 구현
 
 
     }
-}
+} 
